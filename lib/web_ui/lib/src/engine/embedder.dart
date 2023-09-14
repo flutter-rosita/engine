@@ -37,7 +37,7 @@ class FlutterViewEmbedder {
   DomElement? _resourcesHost;
 
   DomElement get _flutterViewElement => window.dom.rootElement;
-  DomShadowRoot get _glassPaneShadow => window.dom.renderingHost;
+  DomNode get _glassPaneShadow => window.dom.renderingHost;
 
   void reset() {
     // How was the current renderer selected?

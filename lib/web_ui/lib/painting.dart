@@ -269,7 +269,7 @@ abstract class Gradient implements Shader {
     Float64List? matrix4,
   ]) {
     final Float32List? matrix = matrix4 == null ? null : engine.toMatrix32(matrix4);
-    return engine.renderer.createLinearGradient(
+    return RositaGradientLinearShader(
       from,
       to,
       colors,
@@ -298,7 +298,7 @@ abstract class Gradient implements Shader {
     } else {
       assert(center != Offset.zero ||
           focal != Offset.zero); // will result in exception(s) in Skia side
-      return engine.renderer.createConicalGradient(
+      return RositaGradientRadialShader(
         focal, focalRadius, center, radius, colors, colorStops, tileMode, matrix32);
     }
   }
@@ -310,7 +310,7 @@ abstract class Gradient implements Shader {
     double startAngle = 0.0,
     double endAngle = math.pi * 2,
     Float64List? matrix4,
-  ]) => engine.renderer.createSweepGradient(
+  ]) => RositaGradientSweepShader(
     center,
     colors,
     colorStops,
@@ -398,7 +398,7 @@ class ImageFilter {
     double sigmaX = 0.0,
     double sigmaY = 0.0,
     TileMode tileMode = TileMode.clamp
-  }) => engine.renderer.createBlurImageFilter(
+  }) => RositaBlurImageFilter(
     sigmaX: sigmaX,
     sigmaY: sigmaY,
     tileMode: tileMode
