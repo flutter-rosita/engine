@@ -127,8 +127,8 @@ class FlutterViewEmbedder {
   late DomElement _glassPaneElement;
 
   /// The shadow root of the [glassPaneElement], which contains the whole Flutter app.
-  DomShadowRoot get glassPaneShadow => _glassPaneShadow;
-  late DomShadowRoot _glassPaneShadow;
+  DomNode get glassPaneShadow => _glassPaneShadow;
+  late DomNode _glassPaneShadow;
 
   DomElement get textEditingHostNode => _textEditingHostNode;
   late DomElement _textEditingHostNode;
@@ -172,18 +172,18 @@ class FlutterViewEmbedder {
     _embeddingStrategy.attachGlassPane(flutterViewElement);
     flutterViewElement.appendChild(glassPaneElement);
 
-    if (getJsProperty<Object?>(glassPaneElement, 'attachShadow') == null) {
-      throw UnsupportedError('ShadowDOM is not supported in this browser.');
-    }
+    // if (getJsProperty<Object?>(glassPaneElement, 'attachShadow') == null) {
+    //   throw UnsupportedError('ShadowDOM is not supported in this browser.');
+    // }
 
     // Create a [HostNode] under the glass pane element, and attach everything
     // there, instead of directly underneath the glass panel.
-    final DomShadowRoot shadowRoot = glassPaneElement.attachShadow(<String, dynamic>{
+    final DomNode shadowRoot = getJsProperty<Object?>(glassPaneElement, 'attachShadow') != null ? glassPaneElement.attachShadow(<String, dynamic>{
       'mode': 'open',
       // This needs to stay false to prevent issues like this:
       // - https://github.com/flutter/flutter/issues/85759
       'delegatesFocus': false,
-    });
+    }) : domDocument.createElement('shadow-root');
     _glassPaneShadow = shadowRoot;
 
     final DomHTMLStyleElement shadowRootStyleElement = createDomHTMLStyleElement(configuration.nonce);
