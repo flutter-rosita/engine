@@ -411,7 +411,7 @@ class ImageFilter {
     double sigmaX = 0.0,
     double sigmaY = 0.0,
     TileMode tileMode = TileMode.clamp
-  }) => engine.renderer.createBlurImageFilter(
+  }) => RositaBlurImageFilter(
     sigmaX: sigmaX,
     sigmaY: sigmaY,
     tileMode: tileMode
