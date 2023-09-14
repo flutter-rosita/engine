@@ -714,8 +714,8 @@ extension DomElementExtension on DomElement {
       createDomListWrapper<DomElement>(_childNodes);
 
   @JS('attachShadow')
-  external DomShadowRoot _attachShadow(JSAny initDict);
-  DomShadowRoot attachShadow(Map<Object?, Object?> initDict) =>
+  external DomNode _attachShadow(JSAny initDict);
+  DomNode attachShadow(Map<Object?, Object?> initDict) =>
       _attachShadow(initDict.toJSAnyDeep);
 
   external DomShadowRoot? get shadowRoot;
