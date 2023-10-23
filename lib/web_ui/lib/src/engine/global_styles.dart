@@ -12,6 +12,10 @@ void applyGlobalCssRulesToSheet(
   String cssSelectorPrefix = '',
   required String defaultCssFont,
 }) {
+  if (styleElement.sheet == null) {
+    return; // [ROSITA] Skip exception
+  }
+
   // TODO(web): use more efficient CSS selectors; descendant selectors are slow.
   // More info: https://csswizardry.com/2011/09/writing-efficient-css-selectors
 
