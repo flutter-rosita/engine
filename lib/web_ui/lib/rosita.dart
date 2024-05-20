@@ -28,13 +28,13 @@ sealed class RositaGradient implements Gradient {
 
 final class RositaGradientLinearShader extends RositaGradient {
   RositaGradientLinearShader(
-      this.from,
-      this.to,
-      this.colors, [
-        this.colorStops,
-        this.tileMode = TileMode.clamp,
-        this.matrix4,
-      ]);
+    this.from,
+    this.to,
+    this.colors, [
+    this.colorStops,
+    this.tileMode = TileMode.clamp,
+    this.matrix4,
+  ]);
 
   final Offset from;
   final Offset to;
@@ -46,15 +46,15 @@ final class RositaGradientLinearShader extends RositaGradient {
 
 final class RositaGradientRadialShader extends RositaGradient {
   RositaGradientRadialShader(
-      this.focal,
-      this.focalRadius,
-      this.center,
-      this.radius,
-      this.colors, [
-        this.colorStops,
-        this.tileMode = TileMode.clamp,
-        this.matrix4,
-      ]);
+    this.focal,
+    this.focalRadius,
+    this.center,
+    this.radius,
+    this.colors, [
+    this.colorStops,
+    this.tileMode = TileMode.clamp,
+    this.matrix4,
+  ]);
 
   final Offset center;
   final double radius;
@@ -68,14 +68,14 @@ final class RositaGradientRadialShader extends RositaGradient {
 
 final class RositaGradientSweepShader extends RositaGradient {
   RositaGradientSweepShader(
-      this.center,
-      this.colors, [
-        this.colorStops,
-        this.tileMode = TileMode.clamp,
-        this.startAngle = 0.0,
-        this.endAngle = math.pi * 2,
-        this.matrix4,
-      ]);
+    this.center,
+    this.colors, [
+    this.colorStops,
+    this.tileMode = TileMode.clamp,
+    this.startAngle = 0.0,
+    this.endAngle = math.pi * 2,
+    this.matrix4,
+  ]);
 
   final Offset center;
   final List<Color> colors;
@@ -84,4 +84,10 @@ final class RositaGradientSweepShader extends RositaGradient {
   final double startAngle;
   final double endAngle;
   final Float32List? matrix4;
+}
+
+class RositaSurfacePath extends engine.SurfacePath {
+  RositaSurfacePath();
+
+  RositaSurfacePath.from(Path source) : super.from(source as engine.SurfacePath);
 }
